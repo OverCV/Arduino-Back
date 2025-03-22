@@ -323,7 +323,7 @@ async def analizar_datos_flujo(ultimos_registros):
 # Endpoints de la API
 
 
-@app.post("/flujo")
+@app.post("/flujo/")
 async def recibir_flujo(data: FlujoAgua, background_tasks: BackgroundTasks):
     """Endpoint para recibir datos de flujo del ESP32"""
     logger.info(f"Flujo de agua recibido: {data.flujo}%")
