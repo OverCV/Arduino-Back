@@ -1,6 +1,8 @@
 from google import genai
 import json
 import time
+import os
+from dotenv import load_dotenv
 
 
 class ReasoningSystem:
@@ -212,7 +214,10 @@ class ReasoningSystem:
 
 # Ejemplo de uso
 if __name__ == "__main__":
-    API_KEY = ""  # Reemplaza con tu API key
+    # Cargar variables de entorno desde un archivo .env
+    # Obtener la API key desde la variable de entorno
+    load_dotenv(".env")
+    API_KEY = os.getenv("GEMINI")
 
     # Crea una instancia del sistema
     reasoning_system = ReasoningSystem(api_key=API_KEY, model="gemini-2.0-flash-exp")
