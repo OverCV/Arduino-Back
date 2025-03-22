@@ -212,7 +212,7 @@ class ReasoningSystem:
 
 # Ejemplo de uso
 if __name__ == "__main__":
-    API_KEY = "AIzaSyDV34Kz7mvEy5zZ2md3_pGCG0bYbayqNQE"  # Reemplaza con tu API key
+    API_KEY = ""  # Reemplaza con tu API key
 
     # Crea una instancia del sistema
     reasoning_system = ReasoningSystem(api_key=API_KEY, model="gemini-2.0-flash-exp")
