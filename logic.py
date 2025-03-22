@@ -212,50 +212,50 @@ class ReasoningSystem:
             yield f"Error en streaming: {str(e)}"
 
 
-# Ejemplo de uso
-if __name__ == "__main__":
-    # Cargar variables de entorno desde un archivo .env
-    # Obtener la API key desde la variable de entorno
-    load_dotenv(".env")
-    API_KEY = os.getenv("GEMINI")
+# # Ejemplo de uso
+# if __name__ == "__main__":
+#     # Cargar variables de entorno desde un archivo .env
+#     # Obtener la API key desde la variable de entorno
+#     load_dotenv(".env")
+#     API_KEY = os.getenv("GEMINI")
 
-    # Crea una instancia del sistema
-    reasoning_system = ReasoningSystem(api_key=API_KEY, model="gemini-2.0-flash-exp")
+#     # Crea una instancia del sistema
+#     reasoning_system = ReasoningSystem(api_key=API_KEY, model="gemini-2.0-flash-exp")
 
-    # Ejemplo 1: Obtener respuesta completa con ciclos de razonamiento
-    query = (
-        "Explica cómo crear agentes con N8N y las mejores integraciones disponibles."
-    )
-    result = reasoning_system.generate_reasoned_response(query, num_cycles=3)
+#     # Ejemplo 1: Obtener respuesta completa con ciclos de razonamiento
+#     query = (
+#         "Explica cómo crear agentes con N8N y las mejores integraciones disponibles."
+#     )
+#     result = reasoning_system.generate_reasoned_response(query, num_cycles=3)
 
-    # Imprimir la respuesta completa para depuración
-    print("\n==== RESPUESTA COMPLETA (PARA DEPURACIÓN) ====")
-    print(result)
+#     # Imprimir la respuesta completa para depuración
+#     print("\n==== RESPUESTA COMPLETA (PARA DEPURACIÓN) ====")
+#     print(result)
 
-    print("\n==== CICLOS DE RAZONAMIENTO ====")
-    # Verificamos que exista la clave 'razonamiento' antes de iterar
-    if "razonamiento" in result:
-        for cycle in result["razonamiento"]:
-            print(f"\nCICLO {cycle.get('ciclo', 'N/A')}:")
+#     print("\n==== CICLOS DE RAZONAMIENTO ====")
+#     # Verificamos que exista la clave 'razonamiento' antes de iterar
+#     if "razonamiento" in result:
+#         for cycle in result["razonamiento"]:
+#             print(f"\nCICLO {cycle.get('ciclo', 'N/A')}:")
 
-            # Usamos .get() para evitar KeyError si falta alguna clave
-            print(f"Análisis: {cycle.get('análisis', 'No disponible')[:100]}...")
-            print(f"Ideas: {cycle.get('ideas', 'No disponible')[:100]}...")
-            print(f"Evaluación: {cycle.get('evaluación', 'No disponible')[:100]}...")
-            print(
-                f"Refinamiento: {cycle.get('refinamiento', 'No disponible')[:100]}..."
-            )
-    else:
-        print("No se encontraron ciclos de razonamiento en la respuesta.")
+#             # Usamos .get() para evitar KeyError si falta alguna clave
+#             print(f"Análisis: {cycle.get('análisis', 'No disponible')[:100]}...")
+#             print(f"Ideas: {cycle.get('ideas', 'No disponible')[:100]}...")
+#             print(f"Evaluación: {cycle.get('evaluación', 'No disponible')[:100]}...")
+#             print(
+#                 f"Refinamiento: {cycle.get('refinamiento', 'No disponible')[:100]}..."
+#             )
+#     else:
+#         print("No se encontraron ciclos de razonamiento en la respuesta.")
 
-    print("\n==== RESPUESTA FINAL ====")
-    print(result.get("respuesta_final", "No se encontró respuesta final."))
+#     print("\n==== RESPUESTA FINAL ====")
+#     print(result.get("respuesta_final", "No se encontró respuesta final."))
 
-    # Ejemplo 2: Streaming de solo la respuesta final
-    print("\n==== STREAMING DE RESPUESTA ====")
-    query = "¿Cuáles son los principios éticos más importantes en el desarrollo de IA?"
+#     # Ejemplo 2: Streaming de solo la respuesta final
+#     print("\n==== STREAMING DE RESPUESTA ====")
+#     query = "¿Cuáles son los principios éticos más importantes en el desarrollo de IA?"
 
-    for chunk in reasoning_system.stream_final_response(query, num_cycles=2):
-        print(chunk, end="", flush=True)
+#     for chunk in reasoning_system.stream_final_response(query, num_cycles=2):
+#         print(chunk, end="", flush=True)
 
-    # Meterle las 4R de la IA o algo así
+#     # Meterle las 4R de la IA o algo así

@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 from fastapi import FastAPI, BackgroundTasks, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -254,7 +255,9 @@ class DatabaseManager:
 db_manager = DatabaseManager()
 
 # Inicializar sistema de razonamiento
-reasoning_system = ReasoningSystem()
+load_dotenv(".env")
+API_KEY = os.getenv("GEMINI")
+reasoning_system = ReasoningSystem(API_KEY)
 
 
 # Función para analizar datos con Gemini en segundo plano
